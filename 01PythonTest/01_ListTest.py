@@ -2,8 +2,11 @@
 print "Please insert your List,type 'exit' to exit";
 ls=[];
 value="";
-while value!="exit":
+exitStr="exit"
+while value!=exitStr:
     value=raw_input();
-    ls.append(value);
-print "your List is:"+str(ls);
+    if(value!=exitStr):
+        ls.append(value);
+ls.sort();
+print "your sorted List is:"+str(ls);
 raw_input();
