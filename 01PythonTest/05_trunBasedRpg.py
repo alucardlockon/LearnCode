@@ -63,9 +63,18 @@ class stage:
         self.stagename=stagename
         self.stagelv=stagelv
         self.startPos=0
-
+    def getInfo(self):
+        s=''
+        for num in self.emenyPrecent :s+str(num)+','
+        return self.stagename+"[stageLv:"+str(self.stageLv)+",compelete:"+str(self.compelete)+\
+               ",startPos:"+str(self.startPos)+\
+               ",endPos:"+str(self.endPos)+",emenyLIst:["+","+\
+               "],emenyPrecent:["+s+"]]"
 #my=role('my',7)
 #print my.getInfo()
 #my.addExp(18000)
 #print my.getInfo()
 stage=stage("forest",1)
+stage.getInfo()
+
+
