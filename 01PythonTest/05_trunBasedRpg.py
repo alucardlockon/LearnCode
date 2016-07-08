@@ -6,6 +6,8 @@ class role:
     lv=1
     exp=0
     nextLv=1000
+    hp=100
+    mp=30
     stra=5
     inte=5
     spd=5
@@ -22,6 +24,8 @@ class role:
     def initRoleByLv(self,lv):
         self.exp=lv*(1000+lv*200)
         self.nextLv=(lv+1)*(1000+(lv+1)*200)
+        self.hp=int(self.hp+lv*30*random.random())
+        self.mp=int(self.mp+lv*10*random.random())
         self.stra=int(self.stra+lv*2*random.random())
         self.inte=int(self.inte+lv*2*random.random())
         self.spd=int(self.spd+lv*2*random.random())
@@ -31,6 +35,7 @@ class role:
     def getInfo(self):
         return self.name+"[lv:"+str(self.lv)+",exp:"+str(self.exp)+\
                ",nextLv:"+str(self.nextLv)+\
+               ",hp:"+str(self.hp)+",mp:"+str(self.mp)+\
                ",stra:"+str(self.stra)+",inte:"+str(self.inte)+\
                ",spd:"+str(self.spd)+",defe:"+str(self.defe)+\
                ",rest:"+str(self.rest)+\
@@ -39,9 +44,12 @@ class role:
         self.exp+=exp
         if self.exp>=self.nextLv:
             self.lvUp();
+        print self.name+' get '+str(exp)+' exp!'
     def lvUp(self):
         self.lv+=1
         self.nextLv=(self.lv+1)*(1000+(self.lv+1)*200)
+        self.hp=int(self.hp+30*random.random())
+        self.mp=int(self.mp+10*random.random())
         self.stra=int(self.stra+2*random.random())
         self.inte=int(self.inte+2*random.random())
         self.spd=int(self.spd+2*random.random())
@@ -50,6 +58,7 @@ class role:
         self.void=int(self.void+2*random.random())
         if self.exp>=self.nextLv:
             self.lvUp();
+        print self.name+' LEVELUP!'+self.getInfo()
 
 class stage:
     stagename="stage"
@@ -82,27 +91,62 @@ class stage:
 #stage=stage("forest",1)
 #print stage.getInfo()
 
+#commads:
+def attack(roleself,roleattacked):
+    damage=0
+    if roleself.stra-roleattacked.defe>0:
+        damage=int((roleself.stra-roleattacked.defe)*random.random()*20)
+    else:
+        damage=int(random.random()*20)
+    roleattacked.hp-=damage
+    print roleself.name+'\'s attack:deal '+str(damage)+' damage to '+roleattacked.name
+
 #methods:
 def expolore(stage):
     while True:
         r=int(random.random()*100);
         precentnew=0;
         for (precent,emeny) in zip(stage.emenyPrecent,stage.emenyLIst):
+            stage.startPos+=int(4*random.random())+1;
+            if(stage.startPos>=stage.endPos):
+                print "stage clear!"
+                return "stage clear!"
             precentold=precentnew
             precentnew+=precent
             if r>=precentold and r<precentnew :
-                print time.strftime("%Y-%m-%d-%H-%M-%S",\
-                                    time.localtime(time.time())),\
-                                    precentold,\
-                                    precentnew
-                print emeny.name
-                cmd=raw_input()
-                if cmd=="exit" :
-                    break
+                while True:
+                    
+                    print time.strftime("%Y-%m-%d-%H-%M-%S",\
+                                        time.localtime(time.time())),\
+                                        precentold,\
+                                        precentnew,emeny.name,emeny.hp,emeny.mp,player.name,player.hp,player.mp
+                    #print emeny.getInfo()
+                    #print player.getInfo()
+                    cmd=raw_input()
+                    if cmd=="exit" :
+                        break
+                    if cmd=="show":
+                        print stage.startPos,stage.endPos,player.getInfo(),emeny.getInfo()
+                        break
+                    if emeny.spd>player.spd:
+                        attack(emeny,player)
+                    if cmd=="a" or cmd=="attack":
+                        attack(player,emeny)
+                    if emeny.spd<=player.spd:
+                        attack(emeny,player)
+                    if emeny.hp<=0:
+                        player.addExp(int((emeny.lv+emeny.inte+emeny.stra)*500*random.random()))
+                        break
+                    elif player.hp<=0:
+                        print "game over"
+                        return 'game over'
+                    
         
 
 
 #main methods:
+global player
+player=role("player",8)
 while True:
     print 'Please type enter to start,type"exit" to exit'
     cmd=raw_input()
