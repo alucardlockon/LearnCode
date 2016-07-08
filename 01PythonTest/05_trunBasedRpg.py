@@ -1,5 +1,6 @@
 #trun based rpg
 import random
+import time
 class role:
     name=""
     lv=1
@@ -56,25 +57,57 @@ class stage:
     compelete=False
     startPos=0
     endPos=100
-    emenyLIst=[role("man",1)]
-    emenyPrecent=[100]
-    boss=role("boss",3)
+    emenyLIst=[role("man",1),role("slime",3),role("swordman",4),\
+               role("dragon baby",5),role("dragon",7),role("vampire",8)]
+    emenyPrecent=[30,30,20,10,5,5]
+    boss=role("boss",10)
     def __init__(self,stagename,stagelv):
         self.stagename=stagename
         self.stagelv=stagelv
         self.startPos=0
     def getInfo(self):
         s=''
-        for num in self.emenyPrecent :s+str(num)+','
+        for num in self.emenyPrecent :s+=str(num)+','
+        s2=''
+        for num2 in self.emenyLIst :s2+=num2.name+','
         return self.stagename+"[stageLv:"+str(self.stageLv)+",compelete:"+str(self.compelete)+\
                ",startPos:"+str(self.startPos)+\
-               ",endPos:"+str(self.endPos)+",emenyLIst:["+","+\
+               ",endPos:"+str(self.endPos)+\
+               ",emenyLIst:["+s2+\
                "],emenyPrecent:["+s+"]]"
 #my=role('my',7)
 #print my.getInfo()
 #my.addExp(18000)
 #print my.getInfo()
-stage=stage("forest",1)
-stage.getInfo()
+#stage=stage("forest",1)
+#print stage.getInfo()
+
+#methods:
+def expolore(stage):
+    while True:
+        r=int(random.random()*100);
+        precentnew=0;
+        for (precent,emeny) in zip(stage.emenyPrecent,stage.emenyLIst):
+            precentold=precentnew
+            precentnew+=precent
+            if r>=precentold and r<precentnew :
+                print time.strftime("%Y-%m-%d-%H-%M-%S",\
+                                    time.localtime(time.time())),\
+                                    precentold,\
+                                    precentnew
+                print emeny.name
+                cmd=raw_input()
+                if cmd=="exit" :
+                    break
+        
 
 
+#main methods:
+while True:
+    print 'Please type enter to start,type"exit" to exit'
+    cmd=raw_input()
+    if cmd=="exit" :
+        break
+    else:
+        expolore(stage("forest",1))
+    
