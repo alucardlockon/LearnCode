@@ -1,28 +1,28 @@
 #-*-coding:utf-8-*- 
 
-fromreimportsearch 
+from re import search 
 
-importurllib2 
+import urllib2 
 
-importMySQLdb 
+import MySQLdb 
 
-fromBeautifulSoupimportBeautifulSoup 
+from BeautifulSoup import BeautifulSoup 
 
-importthreading 
+import threading 
 
-fromdatetimeimportdatetime 
+from datetime import datetime 
 
-fromoptparseimportOptionParser 
+from optparse import OptionParser 
 
-importsys 
+import sys 
 
-importlogging 
+import logging 
 
-importsocket 
+import socket 
 
-fromurlparseimporturlparse 
+from urlparse import urlparse 
 
-importhttplib 
+import httplib 
 
   
 
@@ -32,9 +32,9 @@ lock=threading.Lock()
 
   
 
-classnewThread(threading.Thread): 
+class newThread(threading.Thread): 
 
-    def__init__(self,level,url,db): 
+    def __init__(self,level,url,db): 
 
         threading.Thread.__init__(self) 
 
@@ -44,17 +44,17 @@ classnewThread(threading.Thread):
 
         self.db=db 
 
-    defrun(self): 
+    def run(self): 
 
-        globallock 
+        global lock 
 
-        globallog 
+        global log 
 
-        foriinself.url: 
+        for i in self.url: 
 
             log.debug('%s:%s'%(datetime.now(),i)) 
 
-            printi 
+            print i 
 
             temp,html,data=getURL(i) 
 
@@ -62,13 +62,13 @@ classnewThread(threading.Thread):
 
             #弃掉此url，重新开始循环 
 
-            ifnottemp: 
+            if not temp: 
 
                 continue 
 
             #获取锁，让此线程安全的更新数据 
 
-            iflock.acquire(): 
+            if lock.acquire() : 
 
                 self.db.save(i,html,data) 
 
@@ -82,9 +82,9 @@ classnewThread(threading.Thread):
 
   
 
-classsaveData(): 
+class saveData(): 
 
-    def__init__(self): 
+    def __init__(self): 
 
         self.db=MySQLdb.connect(user='root',db='sp',unix_socket='/tmp/mysql.sock') 
 
@@ -96,9 +96,9 @@ classsaveData():
 
         log.info('%s:Connect database success'%datetime.now()) 
 
-    defsave(self,url,html,pureData): 
+    def save(self,url,html,pureData): 
 
-        globallog 
+        global log 
 
         SQL='''insert into webdata values('%s','%s','%s')'''%(url,html,pureData) 
 
@@ -114,25 +114,25 @@ classsaveData():
 
         self.commit() 
 
-    defcommit(self): 
+    def commit(self): 
 
         self.db.commit() 
 
-    defclose(self): 
+    def close(self): 
 
         self.db.close() 
 
   
 
-defgetURL(url): 
+def getURL(url): 
 
     URLS=[] 
 
-    globallog 
+    global log 
 
-    globalsource 
+    global source 
 
-    globaldomainName 
+    global domainName 
 
     try: 
 
@@ -146,7 +146,7 @@ defgetURL(url):
 
     else: 
 
-        ifpage.code==200: 
+        if page.code==200: 
 
             try: 
 
@@ -174,7 +174,7 @@ defgetURL(url):
 
         pureData=''.join(BeautifulSoup(html).findAll(text=True)).encode('utf-8') 
 
-    exceptUnicodeEncodeError: 
+    except UnicodeEncodeError: 
 
         pureData=html 
 
@@ -182,17 +182,17 @@ defgetURL(url):
 
     rawHtml=html.split('\n') 
 
-    foriinrawHtml: 
+    for i in rawHtml: 
 
         times=i.count('') 
 
-        iftimes: 
+        if times: 
 
-            foryinrange(times): 
+            for y in range(times): 
 
                 pos=i.find('') 
 
-                ifpos!=-1: 
+                if pos!=-1: 
 
                     #在网页中寻找a标记，提取其中的链接， 
 
@@ -200,15 +200,15 @@ defgetURL(url):
 
                     newURL=search('<a href=".+"',i[:pos]) 
 
-                    ifnewURLisnotNone: 
+                    if newURL is not None: 
 
                         newURL=newURL.group().split(' ')[1][6:-1] 
 
-                        if'">'innewURL: 
+                        if'">' in newURL: 
 
                             newURL=search('.+">',newURL) 
 
-                            ifnewURLisNone: 
+                            if newURL is None: 
 
                                 continue 
 
@@ -216,15 +216,15 @@ defgetURL(url):
 
                         #若地址为空，则进入下一个循环 
 
-                        ifnotnewURL: 
+                        if not newURL: 
 
                             continue 
 
                         #如果是相对地址，需要转为绝对地址    
 
-                        ifnotnewURL.startswith('http'): 
+                        if not newURL.startswith('http'): 
 
-                            ifnewURL[0]=='/': 
+                            if newURL[0]=='/': 
 
                                 newURL=source+newURL 
 
@@ -232,7 +232,7 @@ defgetURL(url):
 
                                 newURL=source+'/'+newURL 
 
-                        ifdomainNamenotinnewURLornewURLinURLSornewURL==urlornewURL==url+'/': 
+                        if domainName not in newURLornewURLinURLSornewURL==urlornewURL==url+'/': 
 
                             continue 
 
@@ -244,7 +244,7 @@ defgetURL(url):
 
   
 
-if__name__=='__main__': 
+if __name__=='__main__': 
 
     USAGE=''' 
 
@@ -308,23 +308,23 @@ if__name__=='__main__':
 
     logType=options.logType 
 
-    ifnotsourceorlevel<0orthreadNums<1ortimeout<1orlogTypenotinLEVELS.keys(): 
+    if not sourceorlevel<0 or threadNums<1 or timeout<1 or logType not in LEVELS.keys(): 
 
-        printopt.print_help() 
+        print opt.print_help() 
 
         sys.exit(1) 
 
-    ifnotsource.startswith('http://'): 
+    if not source.startswith('http://'): 
 
         source='http://'+source 
 
-    ifsource.endswith('/'): 
+    if source.endswith('/'): 
 
         source=source[:-1] 
 
     domainName=urlparse(source)[1].split('.')[-2] 
 
-    ifdomainNamein['com','edu','net','org','gov','info','cn']: 
+    if domainName in['com','edu','net','org','gov','info','cn']: 
 
         domainName=urlparse(source)[1].split('.')[-3] 
 
@@ -348,7 +348,7 @@ if__name__=='__main__':
 
     threads=[] 
 
-    foriinrange(level+1): 
+    for i in range(level+1): 
 
         URLS[i]=[] 
 
@@ -360,33 +360,33 @@ if__name__=='__main__':
 
     URLS[0],html,pureData=getURL(source) 
 
-    ifnotURLS[0]: 
+    if not URLS[0]: 
 
         log.error('cannot open %s'%source) 
 
-        print'cannot open '+source 
+        print 'cannot open '+source 
 
         sys.exit(1) 
 
     db.save(source,html,pureData) 
 
-    forleinrange(level): 
+    for le in range(level): 
 
         #根据线程数将当前的URLS大列表切割成小的列表 
 
         nowL='-------------level %d------------'%(le+1) 
 
-        printnowL 
+        print nowL 
 
         log.info(nowL) 
 
         preNums=len(URLS[le])/threadNums 
 
-        foriinrange(threadNums): 
+        for i in range(threadNums): 
 
             temp=URLS[le][:preNums] 
 
-            ifi==threadNums-1: 
+            if i==threadNums-1: 
 
                 subURLS[i]=URLS[le] 
 
@@ -400,7 +400,7 @@ if__name__=='__main__':
 
         threads=threads[0:0] 
 
-        foriinrange(threadNums): 
+        for i in range(threadNums): 
 
             t=newThread(le+1,subURLS[i],db) 
 
@@ -408,13 +408,13 @@ if__name__=='__main__':
 
             threads.append(t) 
 
-        foriinthreads: 
+        for i in threads: 
 
             i.start() 
 
         #等待所有线程结束 
 
-        foriinthreads: 
+        for i in threads: 
 
             i.join() 
 
@@ -424,11 +424,11 @@ if__name__=='__main__':
 
         URLS[nowLevel]=list(set(URLS[nowLevel])) 
 
-        foriinrange(nowLevel): 
+        for i in range(nowLevel): 
 
-            forurlinURLS[i]: 
+            for url in URLS[i]: 
 
-                ifurlinURLS[nowLevel]: 
+                if url in URLS[nowLevel]: 
 
                     URLS[nowLevel].remove(url) 
 
