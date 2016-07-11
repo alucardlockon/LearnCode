@@ -21,3 +21,4 @@
 * make a simple 2d demo
 
 ### 02.Script Introduction
+Cocs2dxTest: a Hello World project with many tests
