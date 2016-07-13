@@ -21,4 +21,7 @@
 * make a simple 2d demo
 
 ### 02.Script Introduction
-Cocs2dxTest: a Hello World project with many tests
+* Cocs2dxTest: a Hello World project with many tests
+
+### 03.api refenerce
+* Cocos Creator:http://cocos.com/docs/creator/index.html
