@@ -29,4 +29,12 @@ Evernote:[Note](https://www.evernote.com/shard/s170/sh/29e8a250-39b2-4597-b3b8-1
 * Cocs2dxTest: a Hello World project with many tests
 
 ### 03.api refenerce
-* Cocos Creator:http://cocos.com/docs/creator/index.html
+* [Cocos Creator Guide](http://cocos.com/docs/creator/index.html)
+
+## week3 My C and Lua Tests(2016.7.18-2016.7.24)
+### 01. Main Target
+* learn C
+* learn Lua and how to work with C
+* make something demo
+
+### 02.Script Introduction

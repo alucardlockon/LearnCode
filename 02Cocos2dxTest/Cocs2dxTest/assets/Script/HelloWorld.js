@@ -13,7 +13,7 @@ cc.Class({
     onLoad: function () {
         this.label.string = this.text;
         this.label.string = "every day young life junes!";
-        / 添加键盘事件监听器
+        // 添加键盘事件监听器
         var listener = {
             event: cc.EventListener.KEYBOARD,
             onKeyPressed: function (keyCode, event) {
