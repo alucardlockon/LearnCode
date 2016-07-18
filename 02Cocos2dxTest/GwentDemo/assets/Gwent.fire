@@ -290,7 +290,9 @@
     "node": {
       "__id__": 6
     },
-    "_enabled": true
+    "_enabled": true,
+    "dragpos": null,
+    "dragFlag": false
   },
   {
     "__type__": "cc.PrefabInfo",

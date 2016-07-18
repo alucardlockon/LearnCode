@@ -13,22 +13,15 @@ cc.Class({
         var listener = {
             event: cc.EventListener.MOUSE,
             onMouseDown: function (event) {
-                cc.log('Mouse Down: ' + event);
                 self.dragFlag=true;
             },
             onMouseUp: function (event) {
-                cc.log('Mouse Up: ' + event);
-                if(self.dragFlag){
-                    var seq = cc.sequence(cc.moveTo(0.5, event.getLocation().x,event.getLocation().y));
-                    self.node.runAction(seq);
-                }
                 self.dragFlag=false;
             },
             onMouseMove: function (event) {
-               cc.log('Mouse Move: ' + event);
-            },
-            onMouseScroll: function (event) {
-               cc.log('Mouse Scroll: ' + event);
+                if(self.dragFlag==true){
+                    self.node.setPosition(event.getLocation());
+                }
             }
         }
         
