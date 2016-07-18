@@ -1,4 +1,6 @@
 # LearnCode
+Evernote:[Note](https://www.evernote.com/shard/s170/sh/29e8a250-39b2-4597-b3b8-1d0e252696ea/e1b440ab6bc8d5ae)
+
 ## week1 My Python Tests(2016.7.4-2016.7.10)
 ### 01.Main Target
 * learn python
@@ -15,9 +17,24 @@
 5. a trun based rpg
 6. a python reptile down news with GUI and DB(not completed yet)
 
+### 03.Other Scripts
+* python_clipboard_test,python_file_encode_test,pyJavaGenertorForSpringMVCandMybatis...
+
 ## week2 My Cocos2dx Tests(2016.7.11-2016.7.17)
 ### 01. Main Target
 * learn Cocos-2dx
 * make a simple 2d demo
+
+### 02.Script Introduction
+* Cocs2dxTest: a Hello World project with many tests
+
+### 03.api refenerce
+* [Cocos Creator Guide](http://cocos.com/docs/creator/index.html)
+
+## week3 My C and Lua Tests(2016.7.18-2016.7.24)
+### 01. Main Target
+* learn C
+* learn Lua and how to work with C
+* make something demo
 
 ### 02.Script Introduction
