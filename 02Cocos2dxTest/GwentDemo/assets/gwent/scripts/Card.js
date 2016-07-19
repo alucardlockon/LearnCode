@@ -2,6 +2,14 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        cardbasic:{
+          str:0,
+          cardtype:'',
+          cardname:'',
+          cardintro:'',
+          cardeffect:{0},
+          cardTexture:null
+        }
         dragpos:null,
         dragFlag:false
     },
@@ -24,13 +32,13 @@ cc.Class({
                 }
             }
         }
-        
+
         cc.eventManager.addListener(listener, self.node);
-        
+
     },
 
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
-        
+
     }
 });
