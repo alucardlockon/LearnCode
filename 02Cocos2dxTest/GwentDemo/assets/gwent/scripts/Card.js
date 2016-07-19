@@ -2,14 +2,14 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        cardbasic:{
-          str:0,
-          cardtype:'',
-          cardname:'',
-          cardintro:'',
-          cardeffect:{0},
-          cardTexture:null
-        }
+        //basic
+        str:0,
+        cardtype:'',
+        cardname:'',
+        cardintro:'',
+        cardeffect:[],
+        cardTexture:null,
+        //props
         dragpos:null,
         dragFlag:false
     },
@@ -21,7 +21,6 @@ cc.Class({
         var listener = {
             event: cc.EventListener.MOUSE,
             onMouseDown: function (event) {
-                self.dragFlag=true;
             },
             onMouseUp: function (event) {
                 self.dragFlag=false;
@@ -35,6 +34,9 @@ cc.Class({
 
         cc.eventManager.addListener(listener, self.node);
 
+        this.node.on('mousedown', function (event) {
+          self.dragFlag=true;
+        }, this);
     },
 
     // called every frame, uncomment this function to activate update callback
