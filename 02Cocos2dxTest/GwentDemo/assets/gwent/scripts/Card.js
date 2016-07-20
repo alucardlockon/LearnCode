@@ -4,12 +4,16 @@ cc.Class({
     properties: {
         //basic
         str:0,
-        cardtype:'closeCombat',
+        cardtype:'CloseCombat',
         cardname:'monster',
-        cardintro:"this is test1 message",
+        strength:0,
+        cardintro:'this is test1 message',
         cardeffect:[],
-        cardTexture:null,
+        cardPicUrl:'gwent/resources/cards/110.jpg',
+        cardSF:cc.SpriteFrame,
+        cardBackSF:cc.SpriteFrame,
         //props
+        backOrFront:false,
         dragpos:null,
         dragFlag:false
     },
@@ -17,6 +21,10 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         var self = this;
+        cc.loader.loadRes(this.cardPicUrl, cc.SpriteFrame, function (err, spriteFrame) {
+            self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
+            self.cardSF=spriteFrame;
+        });
         var pos = self.node.getPosition();
         var listener = {
             event: cc.EventListener.MOUSE,
@@ -36,15 +44,34 @@ cc.Class({
         cc.eventManager.addListener(listener, self.node);
 
         this.node.on('mousedown', function (event) {
-          cc.log(self.cardintro);
           self.dragFlag=true;
-          var cardinfo=cc.find("Canvas/UI/CardInfo");
-          cardinfo.getComponent(cc.Label).string=self.cardintro+'A';
+        }, this);
+        this.node.on('mouseenter', function (event) {
+          self.setCardInfoLabel(true);
+        }, this);
+        this.node.on('mouseleave', function (event) {
+          self.setCardInfoLabel(false);
         }, this);
     },
 
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
 
+    },
+
+    setCardInfoLabel:function(show){
+        var cardinfo=cc.find("Canvas/UI/CardInfo");
+        var cardpic=cc.find("Canvas/UI/CardPic");
+        cc.log(this.cardSF);
+        if(show){
+          cardinfo.getComponent(cc.Label).string=this.cardname+
+          "\n\n类型: "+this.cardtype+
+          "\n\n力量: "+this.strength+
+          "\n\n介绍: "+this.cardintro;
+          cardpic.getComponent(cc.Sprite).spriteFrame=this.cardSF;
+        }else{
+          cardpic.getComponent(cc.Sprite).spriteFrame=null;
+          cardinfo.getComponent(cc.Label).string="";
+        }
     }
 });
