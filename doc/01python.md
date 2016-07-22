@@ -1,7 +1,7 @@
 # Python
 
 ### 定义变量
-``` Python
+``` python
 a=1 #整形 长整形
 a=1.2,b=2E-10 #浮点
 b='String',b=u"str" #字符串 ,unicode字符
@@ -10,12 +10,12 @@ d=(‘a’,'c') #元组
 e={"a":1,"b":2} #字典
 ```
 ### 定义方法
-``` Python
+``` python
 def a():
   #方法体
 ```
 ### if/while/for
-``` Python
+``` python
 #if
 if a==1:
   print 1
@@ -35,12 +35,12 @@ else
   pass
 ```
 ### 模块导入
-``` Python
+``` python
 import
 from 模块 import 变量
 ```
 ### 列表
-``` Python
+``` python
 l=[1,2]
 l.append(3) #添加元素
 l.insert(1,3) #在位置1添加3
@@ -53,20 +53,20 @@ l.reverse() #反转列表
 ```
 
 ### 元组和list转换
-``` Python
+``` python
 tuple(lis)
 list(tem)
 ```
 
 ### 文件
-``` Python
+``` python
 f=open("","w") #w写,r读取,a追加
 f.write("py大法好") #写文件
 f.close()
 ```
 
 ### 异常
-``` Python
+``` python
 try:
   pass
 except SomeException,e:
