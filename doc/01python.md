@@ -2,8 +2,9 @@
 
 ### 定义变量
 ``` Python
-a=1 #整形
-b='String' #字符串
+a=1 #整形 长整形
+a=1.2,b=2E-10 #浮点
+b='String',b=u"str" #字符串 ,unicode字符
 c=[1,2] #列表
 d=(‘a’,'c') #元组
 e={"a":1,"b":2} #字典
@@ -35,8 +36,8 @@ else
 ```
 ### 模块导入
 ``` Python
-#import
-#from 模块 import 变量
+import
+from 模块 import 变量
 ```
 ### 列表
 ``` Python
@@ -55,4 +56,46 @@ l.reverse() #反转列表
 ``` Python
 tuple(lis)
 list(tem)
+```
+
+### 文件
+``` Python
+f=open("","w") #w写,r读取,a追加
+f.write("py大法好") #写文件
+f.close()
+```
+
+### 异常
+``` Python
+try:
+  pass
+except SomeException,e:
+  print "wrong!"
+except:
+  print "wrong else!"
+```
+### Python运算符
+**  幂 3**3
+/   除
+//  整除
+%   取模
+& |   按位与/或
+^ ~   按位异或 5^3=6/翻转x的按位翻转-(x+1)
+### Python库
+#### sys 包含系统相关功能
+sys.platform 平台类型  
+sys.modules 载入的模块
+
+### 其他语句
+#### exec 'print "abc"'
+exec语句用来执行储存在字符串或文件中的Python语句；eval语句用来计算存储在字符串中的有效Python表达式。  
+#### assert a==true
+assert语句用来断言某个条件是真的，并且在它非真的时候引发一个错误--AssertionError。
+#### eval
+eval语句用来计算存储在字符串中的有效Python表达式。  
+#### lambda a:2+a*2
+lambda语句被用来创建新的函数对象，并在运行时返回它们。lambda需要一个参数，后面仅跟单个表达式作为函数体，而表达式的值被这个新建的函数返回。 注意，即便是print语句也不能用在lambda形式中，只能使用表达式。
+``` python
+lam1=lambda a,b:a+b*b
+print lam1(1,2)
 ```
