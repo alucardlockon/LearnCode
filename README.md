@@ -1,5 +1,6 @@
 # LearnCode
-> my learn code project
+> my learn code project  
+
 ## week1 My Python Tests(2016.7.4-2016.7.10)
 ### 01.Main Target
 * learn python
