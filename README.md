@@ -1,6 +1,5 @@
 # LearnCode
-Evernote:[Note](https://www.evernote.com/shard/s170/sh/29e8a250-39b2-4597-b3b8-1d0e252696ea/e1b440ab6bc8d5ae)
-
+> my learn code project
 ## week1 My Python Tests(2016.7.4-2016.7.10)
 ### 01.Main Target
 * learn python
