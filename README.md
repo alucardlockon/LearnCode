@@ -37,7 +37,7 @@
 * learn Lua and how to work with C
 * make something demo
 
-## week3 My Node.js Tests(2016.7.25-2016.7.31)
+## week4 My Node.js Tests(2016.7.25-2016.7.31)
 ### 01. Main Target
 * learn Node.js
 * make a node.js quickreference
