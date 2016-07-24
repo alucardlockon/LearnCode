@@ -4,11 +4,11 @@
 ## week1 My Python Tests(2016.7.4-2016.7.10)
 ### 01.Main Target
 * learn python
-* make a python quickreference
+* make a python quickreference(doc)
 * make a simple python reptile
 * make a turnbased rpg by python
 * make a GUI python reptile applcation
-   
+
 ### 02.Script Introduction
 1. a python List Test
 2. a python reptile base
@@ -37,4 +37,7 @@
 * learn Lua and how to work with C
 * make something demo
 
-### 02.Script Introduction
+## week3 My Node.js Tests(2016.7.25-2016.7.31)
+### 01. Main Target
+* learn Node.js
+* make a node.js quickreference
