@@ -1,5 +1,6 @@
 # Node.js
 [教程1](http://www.runoob.com/nodejs/nodejs-tutorial.html)
+[教程2-7天学会node.js](http://nqdeng.github.io/7-days-nodejs/#1.1)
 [API](http://nodeapi.ucdok.com/#/api/)
 ### hello,world
 #### 引入 required 模块并创建服务器
@@ -111,14 +112,14 @@ EventEmitter 定义了一个特殊的事件 error，它包含了错误的语义�
 ### Buffer类(缓冲区)
 `var buf = new Buffer(10);`
 `var buf = new Buffer([10, 20, 30, 40, 50]);`
-`var buf = new Buffer("www.runoob.com", "utf-8"); //utf-8是默认编码格式，可替换成"ascii", "utf8", "utf16le", "ucs2", "base64" 和 "hex"。`  
+`var buf = new Buffer("www.runoob.com", "utf-8"); //utf-8是默认编码格式，可替换成"ascii", "utf8", "utf16le", "ucs2", "base64" 和 "hex"。`
 `buf.write(string[, offset[, length]][, encoding])`写入数据
 `buf.toString([encoding[, start[, end]]])`读取数据
 `buf.toJSON()`将Buffer转为json
 `Buffer.concat(list[, totalLength])` 缓冲区合并
 `buf.compare(otherBuffer);` 缓冲区比较
 `buf.copy(targetBuffer[, targetStart[, sourceStart[, sourceEnd]]])` 拷贝缓冲区
-`buf.slice([start[, end]])` 裁剪缓冲区  
+`buf.slice([start[, end]])` 裁剪缓冲区
 `buf.length;` 缓冲区长度
 
 ### Stream(流)
@@ -200,3 +201,23 @@ console.log("文件压缩完成。");
 ### 模块
 为了让Node.js的文件可以相互调用，Node.js提供了一个简单的模块系统。
 模块是Node.js 应用程序的基本组成部分，文件和模块是一一对应的。换言之，一个 Node.js 文件就是一个模块，这个文件可能是JavaScript 代码、JSON 或者编译过的C/C++ 扩展。
+编写稍大一点的程序时一般都会将代码模块化。在NodeJS中，一般将代码合理拆分到不同的JS文件中，每一个文件就是一个模块，而文件路径就是模块名。
+在编写每个模块时，都有`require`、`exports`、`module`三个预先定义好的变量可供使用。
+#### require  
+require函数用于在当前模块中加载和使用别的模块，传入一个模块名，返回一个模块导出对象。模块名可使用相对路径（以./开头），或者是绝对路径（以/或C:之类的盘符开头）。另外，模块名中的.js扩展名可以省略。  
+#### exports  
+exports对象是当前模块的导出对象，用于导出模块公有方法和属性。别的模块通过require函数使用当前模块时得到的就是当前模块的exports对象。以下例子中导出了一个公有方法。  
+#### module  
+通过module对象可以访问到当前模块的一些相关信息，但最多的用途是替换当前模块的导出对象。例如模块导出对象默认是一个普通对象，如果想改成一个函数的话，可以使用以下方式。  
+
+### Linux 编译安装
+编译安装
+Linux系统下没有现成的安装程序可用，虽然一些发行版可以使用apt-get之类的方式安装，但不一定能安装到最新版。因此Linux系统下一般使用以下方式编译方式安装NodeJS。
+1. 确保系统下g++版本在4.6以上，python版本在2.6以上。
+2. 从nodejs.org下载tar.gz后缀的NodeJS最新版源代码包并解压到某个位置。
+3. 进入解压到的目录，使用以下命令编译和安装。
+```
+$ ./configure
+$ make
+$ sudo make install
+```
