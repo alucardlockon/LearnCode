@@ -2,6 +2,7 @@
 [教程1](http://www.runoob.com/nodejs/nodejs-tutorial.html)
 [教程2-7天学会node.js](http://nqdeng.github.io/7-days-nodejs/#1.1)
 [API](http://nodeapi.ucdok.com/#/api/)
+[Express](http://www.expressjs.com.cn/)
 ### hello,world
 #### 引入 required 模块并创建服务器
 `var http = require("http");`
@@ -110,17 +111,17 @@ EventEmitter 定义了一个特殊的事件 error，它包含了错误的语义�
 我们一般要为会触发 error 事件的对象设置监听器，避免遇到错误后整个程序崩溃。
  
 ### Buffer类(缓冲区)
-`var buf = new Buffer(10);`
-`var buf = new Buffer([10, 20, 30, 40, 50]);`
-`var buf = new Buffer("www.runoob.com", "utf-8"); //utf-8是默认编码格式，可替换成"ascii", "utf8", "utf16le", "ucs2", "base64" 和 "hex"。`
-`buf.write(string[, offset[, length]][, encoding])`写入数据
-`buf.toString([encoding[, start[, end]]])`读取数据
-`buf.toJSON()`将Buffer转为json
-`Buffer.concat(list[, totalLength])` 缓冲区合并
-`buf.compare(otherBuffer);` 缓冲区比较
-`buf.copy(targetBuffer[, targetStart[, sourceStart[, sourceEnd]]])` 拷贝缓冲区
-`buf.slice([start[, end]])` 裁剪缓冲区
-`buf.length;` 缓冲区长度
+`var buf = new Buffer(10);` 
+`var buf = new Buffer([10, 20, 30, 40, 50]);` 
+`var buf = new Buffer("www.runoob.com", "utf-8"); //utf-8是默认编码格式，可替换成"ascii", "utf8", "utf16le", "ucs2", "base64" 和 "hex"。` 
+`buf.write(string[, offset[, length]][, encoding])`写入数据 
+`buf.toString([encoding[, start[, end]]])`读取数据 
+`buf.toJSON()`将Buffer转为json 
+`Buffer.concat(list[, totalLength])` 缓冲区合并 
+`buf.compare(otherBuffer);` 缓冲区比较 
+`buf.copy(targetBuffer[, targetStart[, sourceStart[, sourceEnd]]])` 拷贝缓冲区 
+`buf.slice([start[, end]])` 裁剪缓冲区 
+`buf.length;` 缓冲区长度 
  
 ### Stream(流)
 Stream 是一个抽象接口，Node 中有很多对象实现了这个接口。例如，对http 服务器发起请求的request 对象就是一个 Stream，还有stdout（标准输出）。
@@ -221,9 +222,11 @@ $ ./configure
 $ make
 $ sudo make install
 ```
-
+ 
+ 
 ### 文件拷贝
-小文件拷贝:  
+小文件拷贝: 
+ 
 ``` javascript
 var fs = require('fs');
 function copy(src, dst) {
@@ -234,8 +237,10 @@ function main(argv) {
 }
 main(process.argv.slice(2));
 ```
-process是一个全局变量，可通过process.argv获得命令行参数。由于argv[0]固定等于NodeJS执行程序的绝对路径，argv[1]固定等于主模块的绝对路径，因此第一个命令行参数从argv[2]这个位置开始。  
+process是一个全局变量，可通过process.argv获得命令行参数。由于argv[0]固定等于NodeJS执行程序的绝对路径，argv[1]固定等于主模块的绝对路径，因此第一个命令行参数从argv[2]这个位置开始。 
+ 
 大文件拷贝:
+ 
 ``` javascript
 var fs = require('fs');
 function copy(src, dst) {
@@ -247,7 +252,7 @@ function main(argv) {
 main(process.argv.slice(2));
 ```
 ### 工程目录
-了解了以上知识后，现在我们可以来完整地规划一个工程目录了。以编写一个命令行程序为例，一般我们会同时提供命令行模式和API模式两种使用方式，并且我们会借助三方包来编写代码。除了代码外，一个完整的程序也应该有自己的文档和测试用例。因此，一个标准的工程目录都看起来像下边这样。  
+了解了以上知识后，现在我们可以来完整地规划一个工程目录了。以编写一个命令行程序为例，一般我们会同时提供命令行模式和API模式两种使用方式，并且我们会借助三方包来编写代码。除了代码外，一个完整的程序也应该有自己的文档和测试用例。因此，一个标准的工程目录都看起来像下边这样。 
 ```
 - /home/user/workspace/node-echo/   # 工程目录
     - bin/                          # 存放命令行相关代码
@@ -261,3 +266,75 @@ main(process.argv.slice(2));
     package.json                    # 元数据文件
     README.md                       # 说明文件
 ```
+ 
+### HTTP Server
+#### 创建Server
+``` javascript
+var http=require('http');
+http.createServer(function(req,res){
+    res.writeHead(200,{'Content-Type':'text/html'});
+    res.write('<h1>Node.js</h1>');
+    res.end('<p>Hello World</p>');
+}).listen(3000);
+```
+#### 获取GET请求内容
+``` javascript
+var http=require('http');
+var url=require('url');
+var util=require('util');
+ 
+http.createServer(function(){
+  res.writeHead(200,{'Content-Type':'text/html'});
+  res.end(util.inspect(url.parse(req.url,true))); //通过url.parse,原始的path被解析为一个对象，其中的query就是GET请求的内容,pathname则是路径
+}).listen(3000);
+```
+#### 获取POST请求内容(仅测试，有效率和安全问题)
+``` javascript
+var http=require('http');
+var querystring=require('querystring');
+var util=require('util');
+ 
+http.createServer(function(){
+  var post='';
+ 
+  req.on('data',function(chunk)){
+    post+=chunk;
+  });
+ 
+  req.on('end',function(){
+    post=querystring.parse(post);
+    res.end(util.inspect(post));
+  });
+ 
+}).listen(3000);
+```
+### Node.js Web开发实战
+#### MVC
+* 模型是对象及其数据结构的实现，通常包含数据库操作
+* 视图表示用户界面，在网站中通常就是HTML的组织结构
+* 控制器用于处理用户请求和数据流,复杂模型，将输出传递给视图。
+ 
+#### Express框架
+示例  
+``` javascript
+var express =require('express');
+ 
+var app=express.createServer();
+app.use(express.bodyParser());
+app.all('/',function(rq,res){
+  res.send(req.body.title+req.body.text);
+});
+app.listen(3000);
+```
+通过应用生成器工具 express 可以快速创建一个应用的骨架。
+`$ npm install express-generator -g` 
+#### 路由规划
+```
+/ 首页 app.get('/',routes.index);
+/u/[user] 用户主页 app.get('/u/:user',routes.user);
+/post 发表信息 app.post('/post',routes.post);
+/reg 用户注册 app.get('/reg',routes.reg); app.post('/reg',routes.doreg);
+/login 用户登录
+/logout 用户登出
+```
+repository:https://github.com/yuanzm/microblog
