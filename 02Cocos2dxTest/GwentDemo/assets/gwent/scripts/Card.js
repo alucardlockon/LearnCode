@@ -9,7 +9,8 @@ cc.Class({
         strength:0,
         cardintro:'this is test1 message',
         cardeffect:[],
-        cardPicUrl:'gwent/resources/cards/110.jpg',
+        cardPicUrl:'gwent/resources/cards/110',
+        cardBackPicUrl:'gwent/resources/cards/bg1',
         cardSF:cc.SpriteFrame,
         cardBackSF:cc.SpriteFrame,
         //props
@@ -22,9 +23,22 @@ cc.Class({
     onLoad: function () {
         var self = this;
         cc.loader.loadRes(this.cardPicUrl, cc.SpriteFrame, function (err, spriteFrame) {
-            self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
+            //self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
             self.cardSF=spriteFrame;
+            if(this.backOrFront){
+              self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
+            }
         });
+        cc.loader.loadRes(this.cardBackPicUrl, cc.SpriteFrame, function (err, spriteFrame) {
+            //self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
+            self.cardBackSF=spriteFrame;
+            if(!this.backOrFront){
+              self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
+            }
+        });
+        
+        
+        
         var pos = self.node.getPosition();
         var listener = {
             event: cc.EventListener.MOUSE,
@@ -62,13 +76,16 @@ cc.Class({
     setCardInfoLabel:function(show){
         var cardinfo=cc.find("Canvas/UI/CardInfo");
         var cardpic=cc.find("Canvas/UI/CardPic");
-        cc.log(this.cardSF);
         if(show){
           cardinfo.getComponent(cc.Label).string=this.cardname+
           "\n\n类型: "+this.cardtype+
           "\n\n力量: "+this.strength+
           "\n\n介绍: "+this.cardintro;
-          cardpic.getComponent(cc.Sprite).spriteFrame=this.cardSF;
+          if(this.backOrFront){
+            cardpic.getComponent(cc.Sprite).spriteFrame=this.cardSF;
+          }else{
+            cardpic.getComponent(cc.Sprite).spriteFrame=this.cardBackSF;
+          }
         }else{
           cardpic.getComponent(cc.Sprite).spriteFrame=null;
           cardinfo.getComponent(cc.Label).string="";

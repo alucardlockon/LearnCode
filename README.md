@@ -41,3 +41,8 @@
 ### 01. Main Target
 * learn Node.js
 * make a node.js quickreference
+
+## week5 My C++ Tests(2016.8.1-2016.8-7)
+### 01. Main Target
+* learn C++
+* make a C++ quickreference
