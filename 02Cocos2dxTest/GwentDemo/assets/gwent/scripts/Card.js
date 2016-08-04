@@ -22,23 +22,22 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         var self = this;
+        /*
         cc.loader.loadRes(this.cardPicUrl, cc.SpriteFrame, function (err, spriteFrame) {
             //self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
             self.cardSF=spriteFrame;
-            if(this.backOrFront){
-              self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
-            }
+            // if(self.backOrFront){
+            //   self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
+            // }
         });
         cc.loader.loadRes(this.cardBackPicUrl, cc.SpriteFrame, function (err, spriteFrame) {
             //self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
             self.cardBackSF=spriteFrame;
-            if(!this.backOrFront){
-              self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
-            }
+            //if(!self.backOrFront){
+            //  self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
+            //}
         });
-        
-        
-        
+        */
         var pos = self.node.getPosition();
         var listener = {
             event: cc.EventListener.MOUSE,
@@ -65,6 +64,9 @@ cc.Class({
         }, this);
         this.node.on('mouseleave', function (event) {
           self.setCardInfoLabel(false);
+        }, this);
+        this.node.on('mouseup', function (event) {
+          self.dragFlag=false;
         }, this);
     },
 

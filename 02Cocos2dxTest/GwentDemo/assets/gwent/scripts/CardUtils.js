@@ -16,8 +16,21 @@ cc.Class({
         cc.loader.loadRes("gwent/resources/prefebs/pre_card", function (err, prefab) {
           var newNode = cc.instantiate(prefab);
           var card=newNode.getComponent('Card');
-          card.backOrFront=backOrFront;
+          
           card=self.initCardRd(card);
+          card.backOrFront=backOrFront;
+          cc.log("ccccc"+card.cardPicUrl);
+          if(card.backOrFront){
+            cc.loader.loadRes(card.cardPicUrl, cc.SpriteFrame, function (err, spriteFrame) {
+                newNode.getComponent(cc.Sprite).spriteFrame=spriteFrame;
+                card.cardSF=spriteFrame;
+            });
+          }else{
+            cc.loader.loadRes(card.cardBackPicUrl, cc.SpriteFrame, function (err, spriteFrame) {
+                newNode.getComponent(cc.Sprite).spriteFrame=spriteFrame;
+                card.cardBackSF=spriteFrame;
+            });
+          }
           var handnode=playerNode.getChildByName('Hand');
           newNode.setPosition(handnode.getChildren().length*50,0);
           //cc.director.getScene().addChild(newNode);
@@ -39,9 +52,10 @@ cc.Class({
         card.cardintro='this is test1 message';
         card.cardeffect=[];
         card.cardPicUrl='gwent/resources/cards/'+id+'';
-        card.backOrFront=false;
+        //card.backOrFront=false;
         card.dragpos=null;
         card.dragFlag=false;
+        
         return card;
     },
     
@@ -58,6 +72,8 @@ cc.Class({
         card.dragFlag=false;
         return card;
     },
+    
+    
     
 });
 
