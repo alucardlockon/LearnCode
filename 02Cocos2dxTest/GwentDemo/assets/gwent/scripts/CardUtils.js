@@ -19,7 +19,6 @@ cc.Class({
           
           card=self.initCardRd(card);
           card.backOrFront=backOrFront;
-          cc.log("ccccc"+card.cardPicUrl);
           if(card.backOrFront){
             cc.loader.loadRes(card.cardPicUrl, cc.SpriteFrame, function (err, spriteFrame) {
                 newNode.getComponent(cc.Sprite).spriteFrame=spriteFrame;

@@ -84,9 +84,11 @@ cc.Class({
           "\n\n力量: "+this.strength+
           "\n\n介绍: "+this.cardintro;
           if(this.backOrFront){
-            cardpic.getComponent(cc.Sprite).spriteFrame=this.cardSF;
+            if(cardpic.getComponent(cc.Sprite).spriteFrame!=this.cardSF)
+              cardpic.getComponent(cc.Sprite).spriteFrame=this.cardSF;
           }else{
-            cardpic.getComponent(cc.Sprite).spriteFrame=this.cardBackSF;
+            if(cardpic.getComponent(cc.Sprite).spriteFrame!=this.cardBackSF)
+              cardpic.getComponent(cc.Sprite).spriteFrame=this.cardBackSF;
           }
         }else{
           cardpic.getComponent(cc.Sprite).spriteFrame=null;
