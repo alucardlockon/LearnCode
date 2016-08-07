@@ -24,6 +24,12 @@ cc.Class({
         var cardUtils = cc.find('Canvas/Scripts').getComponent('CardUtils');
         cardUtils.addCardsToField(10,this.player,true);
         cardUtils.addCardsToField(10,this.opp,false);
+    },
+    
+    reset:function(){
+        this.player.getChildByName('Hand').removeAllChildren();
+        this.opp.getChildByName('Hand').removeAllChildren();
+        this.setUpBoard();
     }
 
     // called every frame, uncomment this function to activate update callback

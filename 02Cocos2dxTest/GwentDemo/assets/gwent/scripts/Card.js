@@ -22,23 +22,22 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         var self = this;
+        /*
         cc.loader.loadRes(this.cardPicUrl, cc.SpriteFrame, function (err, spriteFrame) {
             //self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
             self.cardSF=spriteFrame;
-            if(this.backOrFront){
-              self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
-            }
+            // if(self.backOrFront){
+            //   self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
+            // }
         });
         cc.loader.loadRes(this.cardBackPicUrl, cc.SpriteFrame, function (err, spriteFrame) {
             //self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
             self.cardBackSF=spriteFrame;
-            if(!this.backOrFront){
-              self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
-            }
+            //if(!self.backOrFront){
+            //  self.node.getComponent(cc.Sprite).spriteFrame  = spriteFrame;
+            //}
         });
-        
-        
-        
+        */
         var pos = self.node.getPosition();
         var listener = {
             event: cc.EventListener.MOUSE,
@@ -66,6 +65,9 @@ cc.Class({
         this.node.on('mouseleave', function (event) {
           self.setCardInfoLabel(false);
         }, this);
+        this.node.on('mouseup', function (event) {
+          self.dragFlag=false;
+        }, this);
     },
 
     // called every frame, uncomment this function to activate update callback
@@ -82,9 +84,11 @@ cc.Class({
           "\n\n力量: "+this.strength+
           "\n\n介绍: "+this.cardintro;
           if(this.backOrFront){
-            cardpic.getComponent(cc.Sprite).spriteFrame=this.cardSF;
+            if(cardpic.getComponent(cc.Sprite).spriteFrame!=this.cardSF)
+              cardpic.getComponent(cc.Sprite).spriteFrame=this.cardSF;
           }else{
-            cardpic.getComponent(cc.Sprite).spriteFrame=this.cardBackSF;
+            if(cardpic.getComponent(cc.Sprite).spriteFrame!=this.cardBackSF)
+              cardpic.getComponent(cc.Sprite).spriteFrame=this.cardBackSF;
           }
         }else{
           cardpic.getComponent(cc.Sprite).spriteFrame=null;

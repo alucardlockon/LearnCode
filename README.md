@@ -46,3 +46,7 @@
 ### 01. Main Target
 * learn C++
 * make a C++ quickreference
+
+## week6 My html5 and jquery Tests(8.8-8.14)
+* learn html5
+* learn jquery
