@@ -1,6 +1,6 @@
 # Hadoop
 
-###课堂笔记
+### 课堂笔记
 #### HDFS(the Hadoop Distributed File System)
 具有高性能，容错机制，主从架构，可扩展等特点。  
 组成:NameNode和SecondaryNameNode
