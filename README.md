@@ -51,3 +51,13 @@
 ### 01. Main Target
 * learn html5
 * learn jquery
+* learn php
+* make html5/jquery/css3 quickreference
+* make php quickreference
+* make php demo
+
+## week7 My Spring MVC And Mybatis Tests(2016.8.15-2016.8.21)
+### 01. Main Target
+* learn Spring MVC
+* learn Mybatis
+* make a Spring MVC/Mybatis quickreference
