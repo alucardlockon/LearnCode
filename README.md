@@ -47,7 +47,7 @@
 * learn C++
 * make a C++ quickreference
 
-## week6 My html5 and jquery Tests(2016.8.8-2016.8.14)
+## week6 My html5 css3 And jquery And php Tests(2016.8.8-2016.8.14)
 ### 01. Main Target
 * learn html5
 * learn jquery
@@ -56,8 +56,9 @@
 * make php quickreference
 * make php demo
 
-## week7 My Spring MVC And Mybatis Tests(2016.8.15-2016.8.21)
+## week7 My Spring MVC And Mybatis And Maven Tests(2016.8.15-2016.8.21)
 ### 01. Main Target
 * learn Spring MVC
 * learn Mybatis
+* learn Maven
 * make a Spring MVC/Mybatis quickreference
