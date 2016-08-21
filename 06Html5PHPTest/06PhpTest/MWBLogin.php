@@ -29,6 +29,19 @@
       <li><a href="MWBLogout.action">退出登录</a></li>
     </ul>
   </nav>
+  <div style="width:500px">
+    <form>
+      用户名:<br />
+      <input type="text" class="form-control" />
+      密码:<br />
+      <input type="password" class="form-control" />
+      重新输入密码:<br />
+      <input type="password" class="form-control" />
+      请输入验证码:<br />
+      <input type="text" class="form-control" />
+      <input type="button" class="btn btn-primary" value="提交"/>
+    </form>
+  </div>
   
   
 </body>
