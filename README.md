@@ -62,3 +62,9 @@
 * learn Mybatis
 * learn Maven
 * make a Spring MVC/Mybatis quickreference
+
+## week8 My RMDBS and NOSQL DBs Tests(2016.8.22-2016.8.28)
+### 01. Main Target
+* learn NOSQL DBs (exp:redis,MongoDB,HBase)
+* learn RMDBS (exp:sql server,db2,oracle,mariadb)
+* make some quickreference

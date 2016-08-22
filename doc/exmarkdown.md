@@ -1,24 +1,24 @@
 # Markdown语法
 [中文手册](http://www.appinn.com/markdown/)
 #### 标题
-`# //一级标题`  
+`# //一级标题` 
 `###### //六级标题`
 #### 引用
 > to py or not to py,this is a question
-> > --by ywh  
-
+> > --by ywh 
+ 
 #### 列表
 * name
 * sex
 + a
 + b
 - d
-- c  
-
-
+- c 
+ 
+ 
 1. a
-2. c  
-
+2. c 
+ 
 #### 代码
 `code here`
 ``` javascript
@@ -26,22 +26,22 @@ function func(){
   alert(1);
 }
 ```
-
+ 
 #### 分割线
 ***
 * * *
-- - -  
-
+- - - 
+ 
 -------------------------------
-
+ 
 #### 链接/图片
-[LInk](www.github.com)  
+[LInk](www.github.com) 
 ![Pic](https://avatars0.githubusercontent.com/u/3635420?v=3&s=460)
-
+ 
 #### 强调/粗体
-*Yeah*  
-**Yeah**  
-
+*Yeah* 
+**Yeah** 
+ 
 #### 反斜杠
 ```
 \   反斜线
@@ -57,3 +57,7 @@ _   底线
 .   英文句点
 !   惊叹号
 ```
+#### 表格
+|aaa|bbb|ccc|
+|---|---|---|
+|111|222|333|
