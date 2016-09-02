@@ -68,3 +68,10 @@
 * learn NOSQL DBs (exp:redis,MongoDB,HBase)
 * learn RMDBS (exp:sql server,db2,oracle,mariadb)
 * make some quickreference
+
+## week9 My Spring and WebServer Tests(2016.8.29-2016.9.4)
+### 01. Main Target
+* learn Spring Framework (exp:spring+spring boot+spring cloud)
+* learn WebServer (exp:websphere/jetty/tomcat)
+* make some quickreference
+
