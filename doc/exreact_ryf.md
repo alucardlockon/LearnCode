@@ -182,6 +182,7 @@ ReactDOM.render(
 ```
 
 ### demo09 Form
+`event.target`来访问event的目标  
 ```javascript
 var Input = React.createClass({
   getInitialState: function() {
@@ -202,6 +203,132 @@ var Input = React.createClass({
 });
 
 ReactDOM.render(<Input/>, document.getElementById('example'));
+```
+
+### demo10 组件生命周期  
+组件的生命周期:Mounting(插入Dom中),Updating(被重新渲染),Unmounting(从Dom中被移除)  
+react提供生命周期的hook，`will`方法在事件发生前调用,`did`方法在事件发生后调用。 
+```javascript
+var Hello = React.createClass({
+  getInitialState: function () {
+    return {
+      opacity: 1.0
+    };
+  },
+
+  componentDidMount: function () {
+    this.timer = setInterval(function () {
+      var opacity = this.state.opacity;
+      opacity -= .05;
+      if (opacity < 0.1) {
+        opacity = 1.0;
+      }
+      this.setState({
+        opacity: opacity
+      });
+    }.bind(this), 100);
+  },
+
+  render: function () {
+    return (
+      <div style={{opacity: this.state.opacity}}>
+        Hello {this.props.name}
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <Hello name="world"/>,
+  document.getElementById('example')
+);
+```
+
+### demo11 ajax
+```jsx
+var UserGist = React.createClass({
+  getInitialState: function() {
+    return {
+      username: '',
+      lastGistUrl: ''
+    };
+  },
+
+  componentDidMount: function() {
+    $.get(this.props.source, function(result) {
+      var lastGist = result[0];
+      if (this.isMounted()) {
+        this.setState({
+          username: lastGist.owner.login,
+          lastGistUrl: lastGist.html_url
+        });
+      }
+    }.bind(this));
+  },
+
+  render: function() {
+    return (
+      <div>
+        {this.state.username}'s last gist is
+        <a href={this.state.lastGistUrl}>here</a>.
+      </div>
+    );
+  }
+});
+
+ReactDOM.render(
+  <UserGist source="https://api.github.com/users/octocat/gists" />,
+  document.getElementById('example')
+);
+```
+
+### demo12 显示Promise object的值
+```javascript
+ReactDOM.render(
+  <RepoList
+    promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')}
+  />,
+  document.getElementById('example')
+);
+```
+
+### demo13 服务端渲染
+运行方式:  
+```
+# install the dependencies in demo13 directory
+$ npm install
+
+# translate all jsx file in src subdirectory to js file
+$ npm run build
+
+# launch http server
+$ node server.js
+```
+
+### JSX预编译成js
+先安装babel  
+```
+$ npm install -g babel
+```
+然后重新编译jsx为js  
+```
+$ babel src --out-dir build
+```
+将编译好的js文件放入html  
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello React!</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <!-- No need for Browser.js! -->
+  </head>
+  <body>
+    <div id="example"></div>
+    <script src="build/helloworld.js"></script>
+  </body>
+</html>
 ```
 
 
