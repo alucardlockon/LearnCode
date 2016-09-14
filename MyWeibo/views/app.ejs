@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap-theme.css' />
+    <script type="text/javascript" src="javascripts/jquery.min.js" ></script>
+    <script type="text/javascript" src="javascripts/react.js" ></script>
+    <script type="text/javascript" src="javascripts/react-dom.js" ></script>
+    <script type="text/javascript" src="javascripts/browser.min.js" ></script>
+
+    <style type="text/css">
+        .navbar{
+            font-size: 20px;
+        }
+        .navbar li{
+            float: left;
+            width: 25%;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript" src="javascripts/bootstrap.js" ></script>
+    <h1 class=""><%= title %></h1>
+    <div id="navbar">
+        <ul class="navbar">
+            <li><a href="">我的微博</a></li>
+            <li><a href="">我的关注</a></li>
+            <li><a href="">写微博</a></li>
+            <li><a href="">登出</a></li>
+        </ul>
+    </div>
+    <div id="appbody"></div>
+    <script type="text/babel">
+        var Appbody=React.createClass({
+            render: function() {
+                return <div>
+                    <div id="wb1">Lorem ipsum dolor sit amet.</div>
+                    <div id="wb2">Lorem ipsum dolor.</div>
+                    <div id="wb3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem beatae consequatur culpa,
+                        enim incidunt quas sequi veritatis voluptatum. Illum, libero?</div>
+                </div>;
+            }
+        });
+        ReactDOM.render(
+            <Appbody />,
+            document.getElementById('appbody')
+        );
+
+    </script>
+</body>
+</html>

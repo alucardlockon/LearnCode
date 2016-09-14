@@ -1,10 +1,20 @@
-https://github.com/ruanyf/react-demos 
+demo:https://github.com/ruanyf/react-demos  
+blog:http://www.ruanyifeng.com/blog/2015/03/react.html  
 ### 引入
 ```html
 <script src="../build/react.js"></script>
 <script src="../build/react-dom.js"></script>
 <script src="../build/browser.min.js"></script>
 ```
+### React常用方法
+ReactDOM.render()渲染为Html  
+React.createClass()创建组件  
+
+#### 属性
+this.props,this.state,this.ref,evernt.target
+
+### JSX语法
+HTML标签用<开头，代码块用{开头(js)
  
 ### demo01 渲染JSX
 输出hello,world,注意type为:text/babel 
@@ -243,6 +253,13 @@ ReactDOM.render(
   document.getElementById('example')
 );
 ```
+componentWillMount()  
+componentDidMount()  
+componentWillUpdate(object nextProps, object nextState)  
+componentDidUpdate(object prevProps, object prevState)  
+componentWillUnmount()  
+componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用  
+shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用  
 
 ### demo11 ajax
 ```jsx
