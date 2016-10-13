@@ -75,41 +75,16 @@
 * learn WebServer (exp:websphere/jetty/tomcat)
 * make some quickreference
 
-## week10 My Hadoop and spark Tests(2016.9.23-2016.9.24)
+## week10 My Hadoop and spark Tests(2016.10.13)
 
-## week11 My git,svn and bootstrap Tests(2016.9.25)
+## week11 My git,svn and bootstrap Tests(2016.10.13)
 
-## week12 My DataStruct Tests(2016.9.26-2016.9.27)
+## week12 My DataStruct Tests
 
-## week13 My ios Tests(2016.9.28-2016.9.29)
+## week13 My ios Tests(2016.10.13)
 
-## week14 My Android Tests(2016.9.30-2016.10.1)
+## week14 My Android Tests(2016.10.13)
 
-## week15 My linux shell and regexp Tests(2016.10.2)
+## week15 My linux shell and regexp Tests(2016.10.13)
 
-## week16 My perl and python advanced Tests(2016.10.3-2016.10.4)
-
-## week17 My VIM and emacs Tests(2016.10.5)
-
-## week18 My Progame design Tests(2016.10.6)
-
-## week19 My Wechat app Tests(2016.10.7)
-
-## week20 My mathlab Tests(2016.10.8)
-
-## week21 My ruby Tests(2016.10.9)
-
-## week22 My VB and VBA Tests(2016.10.10)
-
-## week23 My wordpress and R Tests(2016.10.11)
-
-## week24 My kinect and Go Tests(2016.10.12)
-
-## week25 My unity3d and htc vive Tests(2016.10.13)
-
-## week26 My docker Tests(2016.10.14)
-
-## week27 My Lisp Tests(2016.10.15)
-
-## week28 My Coffee and Less Tests(2016.10.16)
-
+## week16 My Wechat app Tests(2016.10.13)
